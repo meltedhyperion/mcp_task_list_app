@@ -1,0 +1,4 @@
+supabase_migration.sql
+.env
+__pycache__/*
+/.venv/*
