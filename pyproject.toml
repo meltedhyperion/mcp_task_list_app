@@ -8,4 +8,7 @@ dependencies = [
     "fastmcp>=2.11.3",
     "supabase>=2.0.0",
     "python-dotenv>=1.0.0",
+    "starlette>=0.47.2",
+    "uvicorn>=0.35.0",
+    "websockets<14",
 ]
