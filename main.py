@@ -4,6 +4,11 @@ from supabase_service import SupabaseService
 from fastmcp.server.http import Route, create_streamable_http_app
 from starlette.responses import JSONResponse
 import os
+from mcp_logging import setup_mcp_logging
+
+logger_middleware = setup_mcp_logging(
+    service_name="task-mcp-server", datadog_source="fly-mcp"
+)
 
 mcp = FastMCP("task-manager")
 
@@ -41,7 +46,7 @@ if __name__ == "__main__":
     host = os.getenv("HOST", "0.0.0.0")
 
     if os.getenv("PORT") or os.getenv("HOST"):
-        # Build HTTP ASGI app with a health endpoint
+
         def health(_request):
             return JSONResponse({"status": "ok"})
 
@@ -50,10 +55,14 @@ if __name__ == "__main__":
             streamable_http_path="/mcp",
             routes=[Route("/health", health, methods=["GET"])],
         )
-
+        app.add_middleware(
+            type(logger_middleware),
+            include_payloads=logger_middleware.include_payloads,
+            business_logs_only=logger_middleware.business_logs_only,
+            business_methods=logger_middleware.business_methods,
+        )
         import uvicorn
 
-        uvicorn.run(app, host=host, port=port)
+        uvicorn.run(app, host=host, port=port, access_log=False)
     else:
-        # Running locally - use stdio transport
         mcp.run()

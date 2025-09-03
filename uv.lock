@@ -179,6 +179,21 @@ wheels = [
 ]
 
 [[package]]
+name = "datadog-api-client"
+version = "2.41.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "certifi" },
+    { name = "python-dateutil" },
+    { name = "typing-extensions" },
+    { name = "urllib3" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/03/4c/21db10939c89052302306cd42419b6ab97ff866411fd13d1da76778a289a/datadog_api_client-2.41.0.tar.gz", hash = "sha256:4357ef9346177568bebe0a63b1ff9e369223bcf051200cc2ea4da19cd411b021", size = 3207226, upload-time = "2025-08-12T13:54:57.485Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/51/96/72605115471aba2e178238075dece38d4121100b93fdc3f1c161d7ddfb3d/datadog_api_client-2.41.0-py3-none-any.whl", hash = "sha256:805bbbf4bd6a81bca47431c1d95f12080d730f116b015200e97ffcd2bd8344d4", size = 3932522, upload-time = "2025-08-12T13:54:55.709Z" },
+]
+
+[[package]]
 name = "deprecation"
 version = "2.1.0"
 source = { registry = "https://pypi.org/simple" }
@@ -496,6 +511,7 @@ name = "mcp-task-list"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
+    { name = "datadog-api-client" },
     { name = "fastmcp" },
     { name = "python-dotenv" },
     { name = "starlette" },
@@ -506,6 +522,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
+    { name = "datadog-api-client", specifier = ">=2.41.0" },
     { name = "fastmcp", specifier = ">=2.11.3" },
     { name = "python-dotenv", specifier = ">=1.0.0" },
     { name = "starlette", specifier = ">=0.47.2" },

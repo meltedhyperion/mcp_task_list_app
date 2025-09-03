@@ -11,4 +11,5 @@ dependencies = [
     "starlette>=0.47.2",
     "uvicorn>=0.35.0",
     "websockets<14",
+    "datadog-api-client>=2.41.0",
 ]
